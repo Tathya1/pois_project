@@ -1,0 +1,281 @@
+/* PA18Panel — Oblivious Transfer */
+
+.panel-root {
+  padding: 24px;
+  max-width: 860px;
+}
+
+.panel-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 8px;
+}
+
+.panel-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.run-btn {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-right: 8px;
+  transition: background 0.15s;
+}
+.run-btn:hover:not(:disabled) { background: #4f46e5; }
+.run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.form-row label { font-size: 12px; color: #94a3b8; }
+
+.text-input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #e2e8f0;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  width: 240px;
+}
+.text-input.wide { width: 360px; }
+.text-input:focus { outline: none; border-color: #6366f1; }
+
+/* protocol steps */
+.ot-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ot-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.ot-step-num {
+  background: #6366f1;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* trace */
+.ot-trace {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ot-trace-step {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.ot-trace-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6366f1;
+  margin-bottom: 6px;
+}
+
+.ot-trace-note {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.eg-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6366f1;
+  margin-bottom: 8px;
+}
+
+.ot-steps-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* -- OT Two-Panel Interactive Demo -- */
+.ot-two-panel {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ot-panel {
+  flex: 1;
+  min-width: 220px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.alice-panel-ot {
+  opacity: 0.7;
+  border-color: #475569;
+}
+
+.bob-panel-ot {
+  border-color: #6366f1;
+}
+
+.ot-panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.ot-panel-note {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.ot-choice-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.choice-btn {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+}
+.choice-0 { background: #4338ca; }
+.choice-0:hover:not(:disabled) { background: #3730a3; }
+.choice-1 { background: #0369a1; }
+.choice-1:hover:not(:disabled) { background: #075985; }
+
+.ot-result-reveal { margin: 8px 0; }
+
+.ot-reveal-label {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.ot-msg-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.ot-msg-card {
+  flex: 1;
+  min-width: 110px;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.ot-msg-card.revealed {
+  background: #14532d;
+  border: 1px solid #16a34a;
+}
+
+.ot-msg-card.hidden-msg {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.ot-msg-idx {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.ot-msg-val {
+  font-size: 16px;
+  font-weight: 700;
+}
+.ot-msg-card.revealed .ot-msg-val { color: #4ade80; }
+.ot-msg-card.hidden-msg .ot-msg-val { color: #475569; font-style: italic; }
+
+.ot-privacy-summary {
+  margin: 12px 0;
+  border-top: 1px solid #334155;
+  padding-top: 10px;
+}
+
+.ot-privacy-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.ot-privacy-who {
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 160px;
+}
+
+.ot-privacy-ans { color: #94a3b8; }
+
+/* Cheat attempt */
+.cheat-result {
+  margin-top: 12px;
+  background: #450a0a;
+  border: 1px solid #dc2626;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.cheat-title {
+  font-weight: 700;
+  color: #f87171;
+  font-size: 14px;
+  margin-bottom: 8px;
+}

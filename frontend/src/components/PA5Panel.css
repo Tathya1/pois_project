@@ -1,0 +1,84 @@
+.pa5-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pa5-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+  color: #cad5e2;
+}
+
+.pa5-grid input,
+.pa5-grid select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #f8fafc;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.pa5-grid input:focus,
+.pa5-grid select:focus {
+  border-color: #3b82f6;
+}
+
+.pa5-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pa5-row button {
+  flex: 1;
+  min-width: 150px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.pa5-row button:hover {
+  opacity: 0.9;
+}
+
+.pa5-row button:disabled {
+  background: #475569;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pa5-error {
+  color: #ef4444;
+  background: #7f1d1d33;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ef4444;
+}
+
+.pa5-success {
+  color: #10b981;
+  background: #064e3b33;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #10b981;
+}
+
+.pa5-info {
+  color: #60a5fa;
+  background: #1e3a8a33;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3b82f6;
+  font-size: 0.9rem;
+}

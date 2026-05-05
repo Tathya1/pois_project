@@ -1,0 +1,46 @@
+.tree-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 16px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  min-width: max-content;
+  width: max-content; /* ensures consistent alignment */
+}
+
+.tree-level {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 24px);
+
+  width: 100%;              /* all levels same width */
+  min-width: max-content;   /* but still expandable */
+}
+
+.tree-node {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  min-width: 60px;
+  max-width: 80px;
+
+  text-align: center;
+  background: #1e293b;
+  color: white;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  flex-shrink: 0;
+}

@@ -1,0 +1,172 @@
+/* PA6Panel.css — CCA-Secure Encryption panel styles */
+
+.pa6-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .pa6-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pa6-side {
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pa6-side.cpa {
+  background: #1c0a0a;
+  border: 1px solid #7f1d1d;
+}
+
+.pa6-side.cca {
+  background: #0a1c0a;
+  border: 1px solid #14532d;
+}
+
+.pa6-side h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pa6-side.cpa h4 { color: #f87171; }
+.pa6-side.cca h4 { color: #4ade80; }
+
+.pa6-malleable-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.pa6-malleable-badge.bad  { background: #7f1d1d; color: #fca5a5; }
+.pa6-malleable-badge.good { background: #14532d; color: #86efac; }
+
+.pa6-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pa6-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.pa6-grid input,
+.pa6-grid select {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.pa6-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pa6-row button {
+  flex: 1;
+  min-width: 130px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.15s;
+}
+
+.pa6-row button:hover { opacity: 0.85; }
+.pa6-row button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.pa6-row button.primary  { background: #3b82f6; color: #fff; }
+.pa6-row button.danger   { background: #ef4444; color: #fff; }
+.pa6-row button.success  { background: #10b981; color: #fff; }
+.pa6-row button.neutral  { background: #475569; color: #e2e8f0; }
+
+.pa6-result-box {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.82rem;
+  font-family: monospace;
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+.pa6-result-box.rejected {
+  background: #450a0a44;
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+}
+
+.pa6-result-box.accepted {
+  background: #052e1644;
+  border: 1px solid #10b981;
+  color: #6ee7b7;
+}
+
+.pa6-result-box.neutral {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+}
+
+.pa6-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.88rem;
+}
+
+.pa6-adv-bar {
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.pa6-adv-fill {
+  height: 100%;
+  background: #10b981;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.pa6-info {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #93c5fd;
+  background: #1e3a8a22;
+  border: 1px solid #3b82f655;
+  line-height: 1.5;
+}
+
+.pa6-warn {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #fcd34d;
+  background: #78350f22;
+  border: 1px solid #f59e0b55;
+  line-height: 1.5;
+}
+
+.pa6-err { color: #f87171; font-size: 0.85rem; }

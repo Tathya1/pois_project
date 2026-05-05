@@ -1,0 +1,95 @@
+.cpa-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+    padding: 10px 14px;
+  border-radius: 12px;
+
+}
+
+.cpa-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+    padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.cpa-toggle {
+  place-self: center;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  border: 1px solid #334155;
+
+  font-size: 14px;
+}
+
+.switch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #475569;
+  border-radius: 999px;
+  transition: 0.25s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  top: 3px;
+
+  background: white;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.switch input:checked + .slider {
+  background: #22c55e;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.cpa-error {
+  color: #f87171;
+  margin: 0;
+}
+
+.cpa-result {
+  margin: 0;
+  font-weight: 600;
+}
+
+.cpa-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  font-size: 14px;
+}

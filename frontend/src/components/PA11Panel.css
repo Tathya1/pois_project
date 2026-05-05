@@ -1,0 +1,161 @@
+/* PA11 — Diffie-Hellman Panel */
+
+/* Re-use shared tab/badge/card classes defined in PA13Panel.css */
+/* via import in the JSX; only DH-specific additions here */
+
+.dh-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dh-party {
+  flex: 1 1 220px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.dh-party h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  color: #e2e8f0;
+}
+
+.dh-party.alice h3 { color: #a78bfa; }
+.dh-party.bob   h3 { color: #60a5fa; }
+.dh-party.eve   h3 { color: #f87171; }
+
+.dh-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 12px;
+  padding: 0 8px;
+  min-width: 80px;
+}
+
+.dh-arrow .arrow-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #38bdf8);
+  position: relative;
+}
+
+.dh-arrow .arrow-label {
+  font-family: monospace;
+  color: #38bdf8;
+  font-size: 12px;
+  text-align: center;
+}
+
+.shared-secret-box {
+  margin-top: 14px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-align: center;
+  border: 1px solid #334155;
+  background: #0f172a;
+}
+
+.shared-secret-box.match {
+  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.06);
+}
+
+.shared-secret-box.mismatch {
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.06);
+}
+
+.shared-secret-box .label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.shared-secret-box .value {
+  font-family: monospace;
+  font-size: 14px;
+  color: #4ade80;
+  word-break: break-all;
+}
+
+.shared-secret-box.mismatch .value {
+  color: #f87171;
+}
+
+.mitm-banner {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #f87171;
+  font-size: 13px;
+}
+
+.eve-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  cursor: pointer;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.eve-toggle input[type="checkbox"] {
+  accent-color: #f87171;
+  width: 15px;
+  height: 15px;
+}
+
+.params-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.params-row .param-field {
+  flex: 1 1 140px;
+}
+
+.param-field label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 3px;
+  display: block;
+}
+
+.step-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.step-card h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.step-card .step-values {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

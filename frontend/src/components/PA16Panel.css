@@ -1,0 +1,86 @@
+/* PA16Panel — ElGamal PKC */
+
+.panel-root {
+  padding: 24px;
+  max-width: 860px;
+}
+
+.panel-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 8px;
+}
+
+.panel-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.run-btn {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.15s;
+}
+.run-btn:hover:not(:disabled) { background: #4f46e5; }
+.run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.form-row label { font-size: 12px; color: #94a3b8; }
+
+.form-row-inline {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.text-input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #e2e8f0;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: monospace;
+  width: 240px;
+}
+.text-input.small { width: 100px; }
+.text-input:focus { outline: none; border-color: #6366f1; }
+
+/* key layout grid */
+.eg-key-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+@media (max-width: 600px) { .eg-key-grid { grid-template-columns: 1fr; } }
+
+.eg-section {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.eg-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6366f1;
+  margin-bottom: 10px;
+}

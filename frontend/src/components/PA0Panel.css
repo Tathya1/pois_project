@@ -1,0 +1,73 @@
+.pa0-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foundation-toggle button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.foundation-toggle button.active {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.bidirectional-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.panels {
+  display: flex;
+  gap: 20px;
+}
+
+.panel {
+  flex: 1;
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.primitive-selector {
+  margin-top: 15px;
+}
+
+.primitive-selector label {
+  margin-right: 10px;
+}
+
+.computation-steps {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 4px;
+  min-height: 50px;
+}
+
+.error-message {
+  color: #ff4d4d;
+}
+
+.proof-summary {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+}

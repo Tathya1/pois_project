@@ -1,0 +1,151 @@
+/* PA8Panel.css */
+
+.pa8-grid { display: flex; flex-direction: column; gap: 14px; }
+.pa8-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; color: #cbd5e1; }
+.pa8-grid input, .pa8-grid select {
+  padding: 9px 12px; border-radius: 8px; border: 1px solid #334155;
+  background: #0f172a; color: #f8fafc; font-family: monospace; font-size: 0.9rem;
+}
+.pa8-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.pa8-row button {
+  flex: 1; min-width: 130px; padding: 10px 14px; border: none;
+  border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
+  transition: opacity 0.15s;
+}
+.pa8-row button:hover { opacity: 0.85; }
+.pa8-row button:disabled { background: #475569 !important; opacity: 0.6; cursor: not-allowed; }
+.pa8-row button.primary { background: #8b5cf6; color: #fff; }
+.pa8-row button.attack  { background: #ef4444; color: #fff; }
+.pa8-row button.neutral { background: #475569; color: #e2e8f0; }
+
+/* Group params card */
+.pa8-group-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.pa8-group-field {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.pa8-group-field .label { font-size: 0.7rem; color: #64748b; margin-bottom: 3px; }
+.pa8-group-field .value { font-family: monospace; font-size: 0.85rem; color: #a78bfa; word-break: break-all; }
+
+/* Birthday attack progress */
+.pa8-birth-wrapper {
+  background: #0f0f1a;
+  border: 1.5px solid #7c3aed;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.pa8-birth-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pa8-birth-stat {
+  background: #1e1b2e;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.pa8-birth-stat .num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #a78bfa;
+}
+.pa8-birth-stat .desc {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.pa8-progress-bar {
+  height: 8px;
+  background: #1e1b2e;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.pa8-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7c3aed, #a855f7);
+  transition: width 0.4s ease;
+}
+
+.pa8-collision-box {
+  background: #0f172a;
+  border: 1.5px solid #22c55e;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  margin-top: 10px;
+}
+.pa8-collision-box .title {
+  color: #4ade80;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+/* Proof steps */
+.pa8-proof-steps { display: flex; flex-direction: column; gap: 10px; }
+.pa8-proof-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.pa8-proof-step:hover { border-color: #7c3aed; }
+.pa8-proof-step.active { border-color: #a855f7; background: #1e1b2e; }
+
+.pa8-step-num {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #7c3aed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.pa8-step-body { flex: 1; }
+.pa8-step-statement { font-size: 0.88rem; color: #cbd5e1; }
+.pa8-step-math {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #a78bfa;
+  background: #0a0a18;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-top: 6px;
+}
+
+.pa8-info {
+  padding: 10px; border-radius: 8px;
+  font-size: 0.82rem; color: #c4b5fd;
+  background: #4c1d9522; border: 1px solid #7c3aed55;
+}
+.pa8-warn {
+  padding: 10px; border-radius: 8px;
+  font-size: 0.82rem; color: #fcd34d;
+  background: #78350f22; border: 1px solid #f59e0b55;
+}
+.pa8-err { color: #f87171; font-size: 0.85rem; }

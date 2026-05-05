@@ -1,0 +1,439 @@
+.pa4-panel {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pa4-subtitle {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.pa4-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pa4-tab {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.pa4-tab.active {
+  background: #0ea5e9;
+  border-color: #38bdf8;
+}
+
+.pa4-tab:hover {
+  background: #475569;
+}
+
+.pa4-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.pa4-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+  flex: 1;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.pa4-field span {
+  color: #cbd5e1;
+  font-size: 0.82rem;
+}
+
+.pa4-field input {
+  width: 100%;
+}
+
+.pa4-button {
+  background: #334155;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.pa4-button.is-active {
+  background: #0ea5e9;
+  border-color: #38bdf8;
+}
+
+.pa4-button:hover {
+  background: #475569;
+}
+
+.pa4-button.is-active:hover {
+  background: #0284c7;
+}
+
+.pa4-output {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.pa4-output-success {
+  border-color: #14532d;
+}
+
+.pa4-output-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.pa4-output-key {
+  color: #94a3b8;
+  min-width: 80px;
+}
+
+.pa4-output-val {
+  word-break: break-all;
+}
+
+.pa4-section {
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 14px;
+  background: #0f172a;
+}
+
+.pa4-section-title {
+  margin: 0 0 12px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.pa4-error {
+  color: #fca5a5;
+  background: #1f0a0a;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.pa4-error-text {
+  color: #fca5a5;
+}
+
+.pa4-muted {
+  color: #94a3b8;
+}
+
+.pa4-meta {
+  color: #7dd3fc;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.pa4-block-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.pa4-block-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.pa4-chain-arrow {
+  align-self: center;
+  font-size: 1rem;
+  color: #64748b;
+  padding: 0 4px;
+}
+
+.pa4-chain-arrow.active {
+  color: #38bdf8;
+}
+
+.pa4-block-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+  max-width: 240px;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 10px;
+  background: #020617;
+}
+
+.pa4-block-card.is-corrupt {
+  border-color: #ef4444;
+  background: #1f0a0a;
+}
+
+.pa4-block-card.is-flipped {
+  border-color: #f59e0b;
+}
+
+.pa4-block-header {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pa4-hex {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pa4-hex-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.pa4-hex-box {
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 0.72rem;
+  background: #020617;
+  color: #e2e8f0;
+  word-break: break-all;
+}
+
+.pa4-hex-neutral {
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.pa4-hex-box.is-hidden {
+  opacity: 0.4;
+}
+
+.pa4-hex-plain {
+  border-color: #3b82f6;
+  color: #bfdbfe;
+}
+
+.pa4-hex-xor {
+  border-color: #a855f7;
+  color: #e9d5ff;
+}
+
+.pa4-hex-ks {
+  border-color: #f59e0b;
+  color: #fde68a;
+}
+
+.pa4-hex-cipher {
+  border-color: #10b981;
+  color: #a7f3d0;
+}
+
+.pa4-hex-counter {
+  border-color: #eab308;
+  color: #fde68a;
+}
+
+.pa4-hex-iv {
+  border-color: #38bdf8;
+  color: #bae6fd;
+}
+
+.pa4-hex-corrupt {
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+.pa4-arrow {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.pa4-arrow.is-hidden {
+  opacity: 0.4;
+}
+
+.pa4-arrow-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.pa4-arrow-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.pa4-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pa4-step-counter {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.pa4-info {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+  background: #111827;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.pa4-info--cbc {
+  border-color: #38bdf8;
+}
+
+.pa4-info--ofb {
+  border-color: #a855f7;
+}
+
+.pa4-info--ctr {
+  border-color: #f59e0b;
+}
+
+.pa4-hint {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.pa4-hint-strong {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.pa4-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pa4-status {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pa4-status.is-success {
+  color: #86efac;
+}
+
+.pa4-status.is-error {
+  color: #fca5a5;
+}
+
+.pa4-attack-section {
+  margin-top: 12px;
+}
+
+.pa4-attack-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fca5a5;
+  margin-bottom: 8px;
+}
+
+.pa4-attack-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pa4-spacer {
+  height: 4px;
+}
+
+.pa4-alert {
+  font-size: 0.75rem;
+  color: #fca5a5;
+  text-align: center;
+}
+
+.pa4-attack-xor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.pa4-xor-symbol {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.pa4-xor-symbol.is-success {
+  color: #86efac;
+}
+
+.pa4-xor-symbol.is-error {
+  color: #fca5a5;
+}
+
+.pa4-test-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pa4-test-row {
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px;
+  background: #020617;
+}
+
+.pa4-test-row.is-success {
+  border-color: #14532d;
+  background: #0f2f1f;
+}
+
+.pa4-test-row.is-error {
+  border-color: #7f1d1d;
+  background: #2a0f0f;
+}
+
+.pa4-test-title {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.pa4-value-accent {
+  color: #7dd3fc;
+}
+
+.pa4-value-success {
+  color: #86efac;
+}
+
+.pa4-value-error {
+  color: #fca5a5;
+}

@@ -1,0 +1,144 @@
+/* PA17 — CCA-Secure PKC Panel */
+
+.pa17-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+@media (max-width: 700px) {
+  .pa17-grid { grid-template-columns: 1fr; }
+}
+
+.pa17-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.pa17-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.pa17-input-group {
+  margin-bottom: 16px;
+}
+
+.pa17-label {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.pa17-input {
+  width: 100%;
+  padding: 8px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.pa17-btn-full {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.pa17-ct-box {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  margin-bottom: 16px;
+}
+
+.pa17-ct-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.pa17-ct-row {
+  font-size: 11px;
+  word-break: break-all;
+  margin-bottom: 6px;
+  font-family: monospace;
+}
+
+.pa17-ct-label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.pa17-color-blue { color: #38bdf8; }
+.pa17-color-green { color: #34d399; }
+.pa17-color-text { color: #e2e8f0; }
+
+.pa17-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.pa17-btn-group button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pa17-btn-success { background: #10b981; color: white; }
+.pa17-btn-success:hover { background: #059669; }
+
+.pa17-btn-danger { background: #ef4444; color: white; }
+.pa17-btn-danger:hover { background: #dc2626; }
+
+.pa17-btn-warning { background: #f59e0b; color: white; }
+.pa17-btn-warning:hover { background: #d97706; }
+
+.pa17-alert {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.pa17-alert.success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pa17-alert.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.pa17-dimmed {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.pa17-contrast-box {
+  margin-top: 16px;
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+}
+
+.pa17-contrast-title {
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+}

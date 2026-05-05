@@ -1,0 +1,125 @@
+/* PA12 — RSA Panel */
+
+.rsa-det-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .rsa-det-grid { grid-template-columns: 1fr; }
+}
+
+.ct-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.ct-box .ct-label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.ct-box .ct-value {
+  font-family: monospace;
+  font-size: 12px;
+  color: #38bdf8;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.det-banner {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+}
+
+.det-banner.danger {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #f87171;
+}
+
+.det-banner.safe {
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+
+.ps-bytes {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.ps-byte {
+  font-family: monospace;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: #0f172a;
+  color: #a78bfa;
+  border: 1px solid #334155;
+}
+
+.pkcs-structure {
+  display: flex;
+  gap: 0;
+  margin-top: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 11px;
+  font-family: monospace;
+}
+
+.pkcs-seg {
+  padding: 6px 8px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pkcs-seg.byte00  { background: #1e293b; color: #94a3b8; }
+.pkcs-seg.byte02  { background: #312e81; color: #a5b4fc; }
+.pkcs-seg.ps-seg  { background: #164e63; color: #7dd3fc; flex: 1; }
+.pkcs-seg.sep     { background: #1e293b; color: #94a3b8; }
+.pkcs-seg.msg-seg { background: #14532d; color: #86efac; flex: 1; }
+
+.rsa-key-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+  .rsa-key-grid { grid-template-columns: 1fr; }
+}
+
+.key-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.key-box .key-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.key-box .key-value {
+  font-family: monospace;
+  font-size: 11px;
+  color: #38bdf8;
+  word-break: break-all;
+  line-height: 1.4;
+}
