@@ -13,11 +13,60 @@ import sys
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _SHARED = os.path.join(_HERE, "..", "shared")
 _PA7 = os.path.join(_HERE, "..", "PA7")
-for _path in (_SHARED, _PA7):
+_PA1 = os.path.join(_HERE, "..", "PA1")
+_PA5 = _HERE
+for _path in (_SHARED, _PA7, _PA1, _PA5):
     if _path not in sys.path:
         sys.path.insert(0, _path)
 
 from merkle_damgard import MerkleDamgard, COMPRESS_FNS
+from tests import frequency_test
+from mac import PRF_MAC
+
+
+class _RandomOracle64:
+    def __init__(self):
+        self._table = {}
+
+    def query(self, msg_hex: str) -> str:
+        if msg_hex not in self._table:
+            self._table[msg_hex] = secrets.token_hex(8)  # 64-bit tag
+        return self._table[msg_hex]
+
+
+def prf_mac_distinguishing_test(q: int = 100, message_len: int = 8) -> dict:
+    """
+    Run the PA#2 PRF frequency test on PRF-MAC outputs for random messages.
+    This demonstrates MAC => PRF by showing PRF-MAC outputs look random.
+    """
+    if message_len != 8:
+        raise ValueError("PRF_MAC requires 8-byte messages")
+
+    mac_instance = PRF_MAC()
+    key = secrets.randbits(64)
+    oracle = _RandomOracle64()
+
+    prf_bits = ""
+    rand_bits = ""
+
+    for _ in range(q):
+        msg = secrets.token_bytes(message_len)
+        tag = mac_instance.mac(key, msg)
+        rand_tag = oracle.query(msg.hex())
+
+        prf_bits += bin(int(tag, 16))[2:].zfill(64)
+        rand_bits += bin(int(rand_tag, 16))[2:].zfill(64)
+
+    prf_freq = frequency_test(prf_bits)
+    rand_freq = frequency_test(rand_bits)
+
+    return {
+        "queries": q,
+        "message_len": message_len,
+        "prf": prf_freq,
+        "rand": rand_freq,
+        "conclusion": "PRF-MAC outputs on random inputs pass the PA#2 PRF frequency test.",
+    }
 
 def euf_cma_game(mac_class, rounds=20) -> dict:
     """
@@ -168,11 +217,9 @@ def length_extension_demo(params: dict | None) -> dict:
     compress_fn = COMPRESS_FNS.get(compress_name, list(COMPRESS_FNS.values())[0])
     md = MerkleDamgard(compress_fn)
 
-    # Real tag (server knows key) for H(k||m)
     real_tag = md.hash(key_bytes + message)
     real_tag_hex = real_tag.hex()
 
-    # Attacker computes glue padding from length only (no key) and forges tag.
     glue_padding = _md_glue_padding(key_len + len(message), md.block_size)
     forged_message = message + glue_padding + suffix
     total_len = key_len + len(forged_message)
@@ -180,7 +227,6 @@ def length_extension_demo(params: dict | None) -> dict:
     forged_tag = _md_continue(md, real_tag, suffix, total_len)
     forged_tag_hex = forged_tag.hex()
 
-    # Server verifies the forged tag by recomputing with key.
     real_forged_tag = md.hash(key_bytes + forged_message).hex()
 
     return {

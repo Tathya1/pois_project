@@ -29,6 +29,10 @@ export default function PA5Panel() {
   const [leCompressFn, setLeCompressFn] = useState("xor");
   const [leLoading, setLeLoading] = useState(false);
 
+  const [prfTestQueries, setPrfTestQueries] = useState(100);
+  const [prfTestResult, setPrfTestResult] = useState(null);
+  const [prfTestLoading, setPrfTestLoading] = useState(false);
+
   const handleMac = async () => {
     setLoading(true);
     setError(null);
@@ -141,10 +145,29 @@ export default function PA5Panel() {
     setLeLoading(false);
   };
 
+  const runPrfMacPrfTest = async () => {
+    setPrfTestLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("http://localhost:5000/pa5/prf-mac-prf-test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ queries: prfTestQueries, messageLen: 8 })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || "PRF test failed");
+      setPrfTestResult(data);
+    } catch (e) {
+      setError(e.message);
+    }
+    setPrfTestLoading(false);
+  };
+
   const TABS = [
     { id: "auth", label: "MAC & Verify" },
     { id: "game", label: "EUF-CMA Game" },
-    { id: "length_ext", label: "Length Extension" }
+    { id: "length_ext", label: "Length Extension" },
+    { id: "prf_test", label: "PRF Test" }
   ];
 
   return (
@@ -307,6 +330,40 @@ export default function PA5Panel() {
                <p><strong>Server verification:</strong> {leResult.matches ? "✅ matches" : "❌ mismatch"}</p>
                <p className="pa5-info" style={{marginTop: '10px'}}>{leResult.note}</p>
              </div>
+          )}
+        </div>
+      )}
+
+      {activeTab === "prf_test" && (
+        <div className="pa5-grid">
+          <div className="pa5-info">
+            This runs the same frequency-based PRF distinguishing test from PA#2, but on PRF-MAC tags for uniformly random inputs.
+          </div>
+
+          <label>
+            Queries
+            <input
+              type="number"
+              value={prfTestQueries}
+              onChange={(e) => setPrfTestQueries(Number(e.target.value))}
+            />
+          </label>
+
+          <div className="pa5-row">
+            <button onClick={runPrfMacPrfTest} disabled={prfTestLoading}>
+              {prfTestLoading ? "Running..." : "Run PRF Distinguishing Test"}
+            </button>
+          </div>
+
+          {prfTestResult && (
+            <div className="output-box">
+              <p><strong>Queries:</strong> {prfTestResult.queries}</p>
+              <p><strong>PRF-MAC p-value:</strong> {prfTestResult.prf?.p_value?.toFixed(4)}</p>
+              <p><strong>PRF-MAC pass:</strong> {prfTestResult.prf?.pass ? "✅ PASS" : "❌ FAIL"}</p>
+              <p><strong>Random oracle p-value:</strong> {prfTestResult.rand?.p_value?.toFixed(4)}</p>
+              <p><strong>Random oracle pass:</strong> {prfTestResult.rand?.pass ? "✅ PASS" : "❌ FAIL"}</p>
+              <p className="pa5-info" style={{ marginTop: "10px" }}>{prfTestResult.conclusion}</p>
+            </div>
           )}
         </div>
       )}

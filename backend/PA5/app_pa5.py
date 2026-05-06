@@ -21,6 +21,7 @@ from mac_game import (
     euf_cma_queries,
     euf_cma_check_forgery,
     length_extension_demo,
+    prf_mac_distinguishing_test,
     _parse_bytes,
 )
 
@@ -164,5 +165,17 @@ def length_extensions_api():
     try:
         data = request.get_json(force=True) if request.data else {}
         return jsonify(length_extension_demo(data))
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@pa5.route("/prf-mac-prf-test", methods=["POST"])
+def prf_mac_prf_test_api():
+    try:
+        data = request.get_json(force=True) if request.data else {}
+        queries = int(data.get("queries", 100))
+        message_len = int(data.get("messageLen", 8))
+        result = prf_mac_distinguishing_test(q=queries, message_len=message_len)
+        return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
