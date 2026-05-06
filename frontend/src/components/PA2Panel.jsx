@@ -242,11 +242,7 @@ const computePath = (xStr) => {
             Seed s (integer)
             <input value={bwSeed} onChange={(e) => setBwSeed(e.target.value)} />
           </label>
-          <label>
-            Output bits: {bwNBits}
-            <input type="range" min={64} max={2048} step={64} value={bwNBits}
-              onChange={(e) => setBwNBits(Number(e.target.value))} />
-          </label>
+         
           <button onClick={runBackward}>Run G(s) = F_s(0ⁿ)‖F_s(1ⁿ)</button>
           {bwResult && !bwResult.error && (
             <div className="stats">
@@ -255,7 +251,8 @@ const computePath = (xStr) => {
                 {bwResult.frequency?.pass ? "✅ PASS" : "❌ FAIL"}</p>
               <p><b>Runs:</b> p = {bwResult.runs?.p_value?.toFixed(4)}{" "}
                 {bwResult.runs?.pass ? "✅ PASS" : "❌ FAIL"}</p>
-              <p style={{ fontSize: "0.8rem", color: "#888" }}>{bwResult.note}</p>
+              <p><b>Serial:</b> p = {bwResult.serial?.p_value1?.toFixed(4)}{" "}
+                {bwResult.serial?.pass ? "✅ PASS" : "❌ FAIL"}</p>
             </div>
           )}
           {bwResult?.error && <p style={{ color: "red" }}>Error: {bwResult.error}</p>}

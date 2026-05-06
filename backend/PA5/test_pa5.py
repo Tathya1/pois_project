@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "..", "shared"))
 sys.path.insert(0, os.path.join(BASE_DIR, "..", "PA2"))
 
 from mac import PRF_MAC, CBC_MAC
-from mac_game import euf_cma_game
+from mac_game import euf_cma_game, length_extension_demo
 
 def test_prf_mac():
     key = "1a2b3c4d"
@@ -47,8 +47,20 @@ def test_euf_cma():
     res2 = euf_cma_game(CBC_MAC, rounds=5)
     assert res2["forgery_successes"] == 0
 
+
+def test_length_extension_demo():
+    result = length_extension_demo({
+        "key": "1a2b3c4d",
+        "message": "comment=hello",
+        "suffix": "&admin=true",
+        "compressFn": "rotate",
+    })
+    assert result["status"] == "ok"
+    assert result["matches"] is True
+
 if __name__ == "__main__":
     test_prf_mac()
     test_cbc_mac()
     test_euf_cma()
+    test_length_extension_demo()
     print("All PA5 tests passed!")

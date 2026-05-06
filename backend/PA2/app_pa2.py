@@ -32,7 +32,7 @@ from prf import GGM_PRF
 from aes_prf import AES_PRF
 from prf_comparison import prf_comparison_demo
 from prg_from_prf import PRG_from_PRF
-from distinguisher import distinguishing_game, prg_from_prf_statistical_test
+from distinguisher import distinguishing_game
 
 pa2 = Blueprint("pa2", __name__)
 
@@ -195,9 +195,10 @@ def prg_from_prf_api():
 
         bits = bits[:n_bits]
 
-        from tests import frequency_test, runs_test
+        from tests import frequency_test, runs_test, serial_test
         freq = frequency_test(bits)
         runs = runs_test(bits)
+        serial = serial_test(bits)
 
         return jsonify({
             "seed":      seed,
@@ -205,7 +206,8 @@ def prg_from_prf_api():
             "sample_outputs": outputs[:4],
             "frequency": freq,
             "runs":      runs,
-            "pass":      freq["pass"] and runs["pass"],
+            "serial":    serial,
+            "pass":      freq["pass"] and runs["pass"] and serial["pass"] ,
             "note":      "G(s) = F_s(0^n) || F_s(1^n) — PRF used as PRG (backward direction)",
         })
 

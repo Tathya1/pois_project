@@ -84,37 +84,6 @@ def demo_inversion_hardness(n_trials: int = 5, budget: int = 10_000) -> dict:
         ),
     }
 
-
-# ---------------------------------------------------------------------------
-# The full OWF_from_PRG class and distinguisher are commented out below.
-# The spec only needed: (a) written argument → 1b.md, (b) brief demo → above.
-# ---------------------------------------------------------------------------
-
-# class OWF_from_PRG:
-#     """
-#     [COMMENTED OUT — over-engineered for spec requirements]
-#     Demonstrate that f(s) = G(s) is a OWF.
-#     The 'evaluate' method simply runs G(s), making the OWF ← PRG
-#     backward direction explicit and callable.
-#     """
-#
-#     def __init__(self):
-#         self._owf = DLP_OWF()
-#         self._prg = PRG(self._owf)
-#
-#     def evaluate(self, s: int, output_bits: int = 64) -> str:
-#         self._prg.seed(s)
-#         return self._prg.next_bits(output_bits)
-#
-#     def demonstrate_hardness(self, n_seeds=5, brute_force_budget=10_000, output_bits=64) -> dict:
-#         # [full implementation removed — see demo_inversion_hardness() above]
-#         pass
-#
-#     def build_distinguisher(self, prg_output: str, output_bits: int = 64) -> dict:
-#         # [distinguisher demo removed — formal argument is in 1b.md]
-#         pass
-
-
 if __name__ == "__main__":
     print("=== PA#1b — OWF from PRG (Inversion Hardness Demo) ===\n")
     result = demo_inversion_hardness(n_trials=5, budget=10_000)

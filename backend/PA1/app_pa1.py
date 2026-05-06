@@ -23,17 +23,12 @@ from flask import Blueprint, request, jsonify
 
 from owf import DLP_OWF
 from prg import PRG
-# OWF_from_PRG class was over-engineered for spec; replaced with minimal demo.
-# The formal proof lives in 1b.md. Only a brief inline demo is needed.
 from owf_from_prg import demo_inversion_hardness
 from tests import frequency_test, runs_test, serial_test
 
 pa1 = Blueprint("pa1", __name__)
 
 
-# ---------------------------------------------------------------------------
-# PRG endpoint
-# ---------------------------------------------------------------------------
 
 @pa1.route("/prg", methods=["POST"])
 def prg_api():
@@ -56,9 +51,6 @@ def prg_api():
         return jsonify({"error": str(e)}), 500
 
 
-# ---------------------------------------------------------------------------
-# NIST statistical tests
-# ---------------------------------------------------------------------------
 
 @pa1.route("/test", methods=["POST"])
 def test_api():
@@ -79,9 +71,6 @@ def test_api():
         return jsonify({"error": str(e)}), 500
 
 
-# ---------------------------------------------------------------------------
-# OWF evaluate
-# ---------------------------------------------------------------------------
 
 @pa1.route("/owf/evaluate", methods=["POST"])
 def owf_evaluate_api():
@@ -96,9 +85,6 @@ def owf_evaluate_api():
         return jsonify({"error": str(e)}), 500
 
 
-# ---------------------------------------------------------------------------
-# OWF hardness demo
-# ---------------------------------------------------------------------------
 
 @pa1.route("/owf/hardness", methods=["POST"])
 def owf_hardness_api():
@@ -130,12 +116,6 @@ def owf_hardness_api():
         return jsonify({"error": str(e)}), 500
 
 
-# ---------------------------------------------------------------------------
-# PA#1b backward direction: OWF from PRG
-# Formal proof is in 1b.md. This endpoint runs a minimal concrete demo.
-# The full OWF_from_PRG class + distinguisher were over-engineered and have
-# been commented out in owf_from_prg.py.
-# ---------------------------------------------------------------------------
 
 @pa1.route("/owf-from-prg", methods=["POST"])
 def owf_from_prg_api():
@@ -153,17 +133,3 @@ def owf_from_prg_api():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# [COMMENTED OUT] Full OWF_from_PRG class routes — replaced by minimal demo above
-# @pa1.route("/owf-from-prg", methods=["POST"])
-# def owf_from_prg_api_old():
-#     try:
-#         data = request.get_json(force=True)
-#         mode = data.get("mode", "hardness")
-#         owf_prg = OWF_from_PRG()
-#         if mode == "hardness":
-#             ...
-#         elif mode == "distinguisher":
-#             ...
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500

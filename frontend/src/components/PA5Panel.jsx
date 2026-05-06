@@ -18,9 +18,16 @@ export default function PA5Panel() {
   const [gameRounds, setGameRounds] = useState(20);
   const [gameResult, setGameResult] = useState(null);
   const [gameLoading, setGameLoading] = useState(false);
+  const [gameSessionId, setGameSessionId] = useState(null);
+  const [forgedMessage, setForgedMessage] = useState("");
+  const [forgedTag, setForgedTag] = useState("");
+  const [forgeryResult, setForgeryResult] = useState(null);
 
   // For testing length extension
   const [leResult, setLeResult] = useState(null);
+  const [leSuffix, setLeSuffix] = useState("&admin=true");
+  const [leCompressFn, setLeCompressFn] = useState("xor");
+  const [leLoading, setLeLoading] = useState(false);
 
   const handleMac = async () => {
     setLoading(true);
@@ -74,11 +81,38 @@ export default function PA5Panel() {
       const res = await fetch("http://localhost:5000/pa5/euf-cma-game", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ rounds: gameRounds, variant })
+        body: JSON.stringify({ rounds: gameRounds, variant, includeQueries: true })
       });
       const data = await res.json();
       if (!res.ok || data.error) throw new Error(data.error || "Game failed");
       setGameResult(data);
+      setGameSessionId(data.sessionId || null);
+      setForgeryResult(null);
+    } catch (e) {
+      setError(e.message);
+    }
+    setGameLoading(false);
+  };
+
+  const checkUserForgery = async () => {
+    if (!gameSessionId) return;
+    setGameLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("http://localhost:5000/pa5/euf-cma-game", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: gameSessionId,
+          forgedMessage,
+          forgedTag,
+          variant
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || "Forgery check failed");
+      setGameResult((prev) => ({ ...prev, queries: data.queries }));
+      setForgeryResult(data.user_forgery || null);
     } catch (e) {
       setError(e.message);
     }
@@ -86,15 +120,25 @@ export default function PA5Panel() {
   };
 
   const runLengthExtension = async () => {
+    setLeLoading(true);
+    setError(null);
     try {
       const res = await fetch("http://localhost:5000/pa5/length-extension", {
-        method: "POST"
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key,
+          message,
+          suffix: leSuffix,
+          compressFn: leCompressFn
+        })
       });
       const data = await res.json();
       setLeResult(data);
     } catch (e) {
       setError(e.message);
     }
+    setLeLoading(false);
   };
 
   const TABS = [
@@ -195,6 +239,42 @@ export default function PA5Panel() {
               <p className="pa5-info" style={{marginTop: '10px'}}>{gameResult.conclusion}</p>
             </div>
           )}
+
+          {gameResult?.queries && (
+            <div className="output-box">
+              <strong>Oracle queries (message, tag):</strong>
+              <ul style={{ marginTop: 8 }}>
+                {gameResult.queries.map((q, idx) => (
+                  <li key={idx} style={{ marginBottom: 6 }}>
+                    <code>{q.messageHex}</code> → <code>{q.tag}</code>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <label>
+            Your forged message (text or hex)
+            <input value={forgedMessage} onChange={(e) => setForgedMessage(e.target.value)} placeholder="new message" />
+          </label>
+          <label>
+            Your forged tag (hex)
+            <input value={forgedTag} onChange={(e) => setForgedTag(e.target.value)} placeholder="tag" />
+          </label>
+
+          <div className="pa5-row">
+            <button onClick={checkUserForgery} disabled={gameLoading || !gameSessionId}>
+              {gameLoading ? "Checking..." : "Check Forgery"}
+            </button>
+          </div>
+
+          {forgeryResult && (
+            <div className={forgeryResult.success ? "pa5-success" : "pa5-error"}>
+              <p><strong>Forgery valid:</strong> {forgeryResult.valid ? "Yes" : "No"}</p>
+              <p><strong>Was previously queried:</strong> {forgeryResult.was_queried ? "Yes" : "No"}</p>
+              <p><strong>EUF-CMA success:</strong> {forgeryResult.success ? "✅ Success" : "❌ Rejected"}</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -203,15 +283,29 @@ export default function PA5Panel() {
           <div className="pa5-info">
             H(k||m) is susceptible to length extension attacks if H is a Merkle-Damgard hash function.
           </div>
+
+          <label>
+            Suffix m'
+            <input value={leSuffix} onChange={(e) => setLeSuffix(e.target.value)} />
+          </label>
+
+          
           
           <div className="pa5-row">
-            <button onClick={runLengthExtension}>Demo Length Extension</button>
+            <button onClick={runLengthExtension} disabled={leLoading}>
+              {leLoading ? "Computing..." : "Demo Length Extension"}
+            </button>
           </div>
           
           {leResult && (
              <div className="output-box">
                <p><strong>Status:</strong> {leResult.status}</p>
-               <p>{leResult.explanation}</p>
+               <p><strong>Original tag t = H(k||m):</strong> {leResult.originalTag}</p>
+               <p><strong>Glue padding:</strong> {leResult.gluePaddingHex}</p>
+               <p><strong>Forged message (hex):</strong> {leResult.forgedMessageHex}</p>
+               <p><strong>Forged tag from t only:</strong> {leResult.forgedTag}</p>
+               <p><strong>Server verification:</strong> {leResult.matches ? "✅ matches" : "❌ mismatch"}</p>
+               <p className="pa5-info" style={{marginTop: '10px'}}>{leResult.note}</p>
              </div>
           )}
         </div>

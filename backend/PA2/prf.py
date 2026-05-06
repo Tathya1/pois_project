@@ -23,14 +23,15 @@ class GGM_PRF:
         for bit in x:
             prg.seed(str(state))
             
-            out = prg.next_bits(64)
+            out = prg.next_bits(128)
 
-            left_bits = out[:32]
-            right_bits = out[32:]
+            left_bits = out[:64]
+            right_bits = out[64:]
+            mask = (1 << 64) - 1
 
             if bit == '0':
-                state = int(left_bits, 2) % 0xFFFFFFFF
+                state = int(left_bits, 2) & mask
             else:
-                state = int(right_bits, 2) % self.owf.p
+                state = int(right_bits, 2) & mask
 
-        return format(state, '08x')
+        return format(state, '016x')
